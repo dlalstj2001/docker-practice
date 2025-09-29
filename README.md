@@ -10,15 +10,15 @@
 
 ## 🎯 **이 프로젝트로 배울 수 있는 것**
 
-- ✅ **Docker Compose** 다중 컨테이너 오케스트레이션
-- ✅ **풀스택 아키텍처** 설계와 구현
-- ✅ **REST API** 개발 (Flask + SQLAlchemy)
-- ✅ **React** 프론트엔드 개발
-- ✅ **MySQL** 데이터베이스 연동
-- ✅ **Redis** 캐싱 시스템
-- ✅ **CORS**, **한글 인코딩** 등 실무 이슈 해결
+- **Docker Compose** 다중 컨테이너 오케스트레이션
+- **풀스택 아키텍처** 설계와 구현
+- **REST API** 개발 (Flask + SQLAlchemy)
+- **React** 프론트엔드 개발
+- **MySQL** 데이터베이스 연동
+- **Redis** 캐싱 시스템
+- **CORS**, **한글 인코딩** 등 실무 이슈 해결
 
-## ⚡ **빠른 시작**
+## **빠른 시작**
 
 ```bash
 # 1. 프로젝트 클론
@@ -32,7 +32,6 @@ docker compose up -d
 # 브라우저에서 http://localhost:8080 열기
 ```
 
-**그게 전부입니다!** 🎉
 
 ## 📁 **프로젝트 구조**
 
@@ -52,7 +51,7 @@ docker-practice/
     └── 📁 src/
 ```
 
-## 🌐 **서비스 구성**
+## **서비스 구성**
 
 | 서비스 | 포트 | 설명 |
 |--------|------|------|
@@ -61,18 +60,18 @@ docker-practice/
 | 🗄️ **Database** | 3307 | MySQL 데이터베이스 |
 | 🚀 **Cache** | 6379 | Redis 캐시 서버 |
 
-## 📚 **학습 단계별 가이드**
+##  **학습 단계별 가이드**
 
-### 🥇 **1단계: 기본 실행**
+### **1단계: 기본 실행**
 - `docker compose up -d`로 서비스 시작
 - 웹 애플리케이션에서 사용자 추가/삭제 테스트
 
-### 🥈 **2단계: 코드 분석**
+### **2단계: 코드 분석**
 - `app/app.py`: Flask API 구조 이해
 - `frontend/src/App.js`: React 컴포넌트 분석
 - `docker-compose.yml`: 서비스 의존성 파악
 
-### 🥉 **3단계: 커스터마이징**
+### **3단계: 커스터마이징**
 - 새로운 API 엔드포인트 추가
 - React UI 개선
 - 데이터베이스 스키마 확장
@@ -136,7 +135,7 @@ docker compose logs redis
 - **캐시**: Redis 7
 - **컨테이너**: Docker, Docker Compose
 
-## 📖 **학습 포인트**
+## **학습 포인트**
 
 ### Docker Compose 설정
 - 다중 서비스 정의
@@ -165,22 +164,13 @@ docker compose logs redis
 7. **⚡ Redis 활용** 실시간 기능
 
 ## 📝 **포함된 기능**
-- ✅ 사용자 생성/조회/삭제 (CRUD)
-- ✅ 한글 이름 완벽 지원
-- ✅ 실시간 데이터 업데이트
-- ✅ Redis 캐싱으로 성능 최적화
-- ✅ 에러 처리 및 사용자 알림
-- ✅ 반응형 UI
+- 사용자 생성/조회/삭제 (CRUD)
+- 한글 이름 완벽 지원
+- 실시간 데이터 업데이트
+- Redis 캐싱으로 성능 최적화
+- 에러 처리 및 사용자 알림
+- 반응형 UI
 
-## 🤝 **기여하기**
-
-이 프로젝트를 개선할 아이디어가 있다면:
-
-1. **Fork** 이 리포지토리
-2. **Feature branch** 생성 (`git checkout -b feature/amazing-feature`)
-3. **Commit** 변경사항 (`git commit -m 'Add amazing feature'`)
-4. **Push** to branch (`git push origin feature/amazing-feature`)
-5. **Pull Request** 생성
 
 ## 📄 **라이선스**
 
@@ -192,5 +182,3 @@ docker compose logs redis
 - 🐙 GitHub: [@dlalstj2001](https://github.com/dlalstj2001)
 
 ---
-
-⭐ **도움이 되었다면 스타를 눌러주세요!** ⭐
