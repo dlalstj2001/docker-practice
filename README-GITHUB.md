@@ -14,6 +14,7 @@
 - ✅ **REST API** 개발 (Flask + SQLAlchemy)
 - ✅ **React** 프론트엔드 개발
 - ✅ **MySQL** 데이터베이스 연동
+- ✅ **Redis** 캐싱 시스템
 - ✅ **CORS**, **한글 인코딩** 등 실무 이슈 해결
 
 ## ⚡ **빠른 시작**
@@ -57,6 +58,7 @@ docker-practice/
 | 🌐 **Frontend** | 8080 | React 웹 애플리케이션 |
 | 🔧 **Backend** | 5000 | Flask REST API |
 | 🗄️ **Database** | 3307 | MySQL 데이터베이스 |
+| 🚀 **Cache** | 6379 | Redis 캐시 서버 |
 
 ## 📚 **학습 단계별 가이드**
 

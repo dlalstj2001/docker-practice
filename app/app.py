@@ -3,6 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 import os
 import time
+import json
+import redis
 from datetime import datetime
 
 app = Flask(__name__)
@@ -12,6 +14,9 @@ CORS(app)  # 모든 도메인에서의 요청 허용
 app.config['JSON_AS_ASCII'] = False
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 app.json.ensure_ascii = False
+
+# Redis 설정
+redis_client = redis.Redis(host='redis', port=6379, decode_responses=True)
 
 # 데이터베이스 설정
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:///local.db')
@@ -72,8 +77,25 @@ def health_check():
 
 @app.route('/users', methods=['GET'])
 def get_users():
+    # Redis 캐시에서 먼저 확인
+    try:
+        cached_users = redis_client.get('users_list')
+        if cached_users:
+            return jsonify(json.loads(cached_users))
+    except:
+        pass  # Redis 연결 실패 시 DB에서 가져옴
+    
+    # DB에서 가져오기
     users = User.query.all()
-    return jsonify([user.to_dict() for user in users])
+    users_data = [user.to_dict() for user in users]
+    
+    # Redis에 5분간 캐싱
+    try:
+        redis_client.setex('users_list', 300, json.dumps(users_data))
+    except:
+        pass  # Redis 저장 실패해도 계속 진행
+    
+    return jsonify(users_data)
 
 @app.route('/users', methods=['POST'])
 def create_user():
@@ -90,6 +112,12 @@ def create_user():
     db.session.add(user)
     db.session.commit()
     
+    # 캐시 무효화
+    try:
+        redis_client.delete('users_list')
+    except:
+        pass
+    
     return jsonify(user.to_dict()), 201
 
 @app.route('/users/<int:user_id>')
@@ -102,6 +130,12 @@ def delete_user(user_id):
     user = User.query.get_or_404(user_id)
     db.session.delete(user)
     db.session.commit()
+    
+    # 캐시 무효화
+    try:
+        redis_client.delete('users_list')
+    except:
+        pass
     
     return jsonify({
         'message': f'User {user.name} deleted successfully',
