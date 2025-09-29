@@ -134,4 +134,3 @@ docker compose restart frontend
 ---
 **👨‍🏫 교육용 프로젝트** - Docker와 풀스택 개발 학습을 위한 실습
 =======
-# docker-practice
