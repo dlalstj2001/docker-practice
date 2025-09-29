@@ -1,4 +1,4 @@
-# 🏗️ Docker-FullStack-Tutorial
+# 🏗️ Docker-Practice
 
 > **Docker Compose**를 활용한 **풀스택 웹 애플리케이션** 실습 프로젝트
 
@@ -20,8 +20,8 @@
 
 ```bash
 # 1. 프로젝트 클론
-git clone https://github.com/your-username/docker-fullstack-tutorial.git
-cd docker-fullstack-tutorial
+git clone https://github.com/your-username/docker-practice.git
+cd docker-practice
 
 # 2. 서비스 시작 (첫 실행 시 ~1분 소요)
 docker compose up -d
@@ -35,7 +35,7 @@ docker compose up -d
 ## 📁 **프로젝트 구조**
 
 ```
-docker-fullstack-tutorial/
+docker-practice/
 ├── 📄 README.md              # 이 파일
 ├── 🐳 docker-compose.yml     # 서비스 정의
 ├── ⚙️ .env                   # 환경 변수
