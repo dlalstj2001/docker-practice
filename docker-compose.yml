@@ -1,55 +1,64 @@
-version: '3.8'
+# Docker Compose 설정 파일
+# 다중 컨테이너 애플리케이션을 정의하고 실행하기 위한 YAML 파일
 
-services:
+version: '3.8'  # Docker Compose 파일 버전
+
+services:  # 애플리케이션을 구성하는 서비스들 정의
+  
+  # Flask 백엔드 API 서버
   web:
-    build: ./app
+    build: ./app                    # Dockerfile이 있는 경로에서 이미지 빌드
     ports:
-      - "5000:5000"
-    environment:
+      - "5000:5000"                # 호스트:컨테이너 포트 매핑
+    environment:                   # 환경 변수 설정
       - FLASK_ENV=${FLASK_ENV}
       - DATABASE_URL=${DATABASE_URL}
-    volumes:
+    volumes:                       # 파일 시스템 마운트 (개발용 hot reload)
       - ./app:/app
-    depends_on:
+    depends_on:                    # 의존성 정의 (db가 먼저 시작되어야 함)
       - db
-    restart: unless-stopped
+    restart: unless-stopped        # 컨테이너가 멈추면 자동 재시작
 
+  # React 프론트엔드 웹 애플리케이션
   frontend:
-    build: ./frontend
+    build: ./frontend              # React 앱 빌드
     ports:
-      - "8080:3000"
+      - "8080:3000"               # 호스트 8080 → 컨테이너 3000 포트
     environment:
-      - CHOKIDAR_USEPOLLING=true
+      - CHOKIDAR_USEPOLLING=true  # 파일 변경 감지를 위한 설정 (Windows/Docker)
     volumes:
-      - ./frontend:/app
-      - /app/node_modules
+      - ./frontend:/app           # 소스 코드 실시간 반영
+      - /app/node_modules         # node_modules는 컨테이너 내부 것 사용
     depends_on:
-      - web
+      - web                       # web 서비스가 먼저 시작되어야 함
     restart: unless-stopped
 
+  # MySQL 데이터베이스 서버
   db:
-    image: mysql:8.0
-    environment:
+    image: mysql:8.0              # Docker Hub에서 MySQL 8.0 이미지 사용
+    environment:                  # MySQL 초기 설정을 위한 환경 변수
       - MYSQL_DATABASE=${MYSQL_DATABASE}
       - MYSQL_USER=${MYSQL_USER}
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
     volumes:
-      - mysql_data:/var/lib/mysql
+      - mysql_data:/var/lib/mysql # 데이터 영속성을 위한 볼륨 마운트
     ports:
-      - "3307:3306"
+      - "3307:3306"               # 호스트의 3307 포트로 접근 (3306 충돌 방지)
     restart: unless-stopped
-    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci  # 한글 지원을 위한 UTF-8 설정
 
+  # Redis 캐시 서버
   redis:
-    image: redis:7-alpine
+    image: redis:7-alpine         # 경량화된 Redis Alpine 이미지 사용
     ports:
-      - "6379:6379"
+      - "6379:6379"               # Redis 기본 포트
     volumes:
-      - redis_data:/data
+      - redis_data:/data          # Redis 데이터 영속성
     restart: unless-stopped
-    command: redis-server --appendonly yes
+    command: redis-server --appendonly yes  # AOF(Append Only File) 모드로 데이터 영속성 보장
 
+# 데이터 볼륨 정의 (컨테이너가 삭제되어도 데이터 보존)
 volumes:
-  mysql_data:
-  redis_data:
+  mysql_data:    # MySQL 데이터베이스 파일 저장
+  redis_data:    # Redis 데이터 파일 저장
