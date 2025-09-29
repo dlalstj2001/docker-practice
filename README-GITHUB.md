@@ -20,7 +20,7 @@
 
 ```bash
 # 1. 프로젝트 클론
-git clone https://github.com/your-username/docker-practice.git
+git clone https://github.com/dlalstj2001/docker-practice.git
 cd docker-practice
 
 # 2. 서비스 시작 (첫 실행 시 ~1분 소요)
