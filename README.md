@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Docker 실습 
 
 Docker Compose를 사용한 풀스택 웹 애플리케이션 실습
@@ -133,3 +134,6 @@ docker compose restart frontend
 
 ---
 **👨‍🏫 교육용 프로젝트** - Docker와 풀스택 개발 학습을 위한 실습
+=======
+# docker-practice
+>>>>>>> b168272afb561dd98fe104ce1d8cc98f857d5b6b
