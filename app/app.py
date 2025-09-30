@@ -47,7 +47,7 @@ class User(db.Model):
 @app.route('/')
 def home():
     return jsonify({
-        'message': 'Welcome to Mini Stack API!',
+        'message': 'Welcome to FRMR Stack API!',
         'version': '1.0.0',
         'endpoints': {
             'GET /': 'API Information',
