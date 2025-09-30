@@ -86,7 +86,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>🏗️ 사용자 관리 시스템</h1>
-        <p>Docker + React + Flask + MySQL</p>
+        <p>Docker + React + Flask + MySQL + Redis</p>
       </header>
 
       <main className="container">
