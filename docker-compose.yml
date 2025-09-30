@@ -9,7 +9,8 @@ services:  # 애플리케이션을 구성하는 서비스들 정의
   web:
     build: ./app                    # Dockerfile이 있는 경로에서 이미지 빌드
     ports:
-      - "5000:5000"                # 호스트:컨테이너 포트 매핑
+      # - "5000:5000"              # 원본 포트 (Windows11)
+      - "5001:5000"                # macOS AirPlay 충돌 방지용 포트
     environment:                   # 환경 변수 설정
       - FLASK_ENV=${FLASK_ENV}
       - DATABASE_URL=${DATABASE_URL}
