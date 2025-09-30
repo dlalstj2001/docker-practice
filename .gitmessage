@@ -1,0 +1,22 @@
+# Git Commit Message Template
+# 사용법: git config commit.template .gitmessage
+
+# <type>(<scope>): <subject> (50자 이내)
+#
+# <body> - 무엇을, 왜 변경했는지 설명 (72자마다 줄바꿈)
+#
+# <footer> - 이슈 번호, 브레이킹 체인지 등
+#
+# Types:
+# feat: 새로운 기능
+# fix: 버그 수정
+# docs: 문서 수정
+# style: 포맷, 세미콜론 등 (코드 변경 없음)
+# refactor: 리팩토링
+# test: 테스트 추가/수정
+# chore: 빌드, 패키지 관리 등
+#
+# 예시:
+# feat(auth): add JWT token validation
+# fix(api): resolve user data corruption issue
+# docs(readme): update Docker setup instructions
