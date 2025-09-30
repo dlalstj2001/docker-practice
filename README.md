@@ -32,6 +32,27 @@ docker compose up -d
 # 브라우저에서 http://localhost:8080 열기
 ```
 
+## 🔧 **환경별 설정**
+
+### **Windows 사용자**
+docker-compose.yml의 web에서 포트 5001번을 5000번으로 수정해야 합니다.
+
+### **macOS 사용자**
+macOS에서 포트 5000번이 AirPlay 서비스와 충돌할 수 있습니다.  
+이미 `docker-compose.yml`에서 해결되어 있습니다:
+
+```yaml
+# 원본 (Windows용)
+# - "5000:5000"
+
+# 수정됨 (macOS 충돌 방지)
+- "5001:5000"
+```
+
+**접속 URL:**
+- 프론트엔드: http://localhost:8080
+- 백엔드 API: http://localhost:5001
+
 
 ## 📁 **프로젝트 구조**
 
@@ -56,7 +77,7 @@ docker-practice/
 | 서비스 | 포트 | 설명 |
 |--------|------|------|
 | 🌐 **Frontend** | 8080 | React 웹 애플리케이션 |
-| 🔧 **Backend** | 5000 | Flask REST API |
+| 🔧 **Backend** | 5001 | Flask REST API (macOS 충돌 방지) |
 | 🗄️ **Database** | 3307 | MySQL 데이터베이스 |
 | 🚀 **Cache** | 6379 | Redis 캐시 서버 |
 
